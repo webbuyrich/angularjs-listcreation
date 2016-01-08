@@ -87,8 +87,8 @@
         <div class="top-content">
         	
             <div class="inner-bg">
-                <div class="container">
-                    <div class="row">
+                <div class="container" ng-app="myApp">
+                    <div class="row" ng-controller="contactController">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <div class="form-top">
@@ -103,22 +103,23 @@
                             <div class="form-bottom">
                                 <form role="form" action="" method="post" class="registration-form">
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-first-name">First name</label>
+                                        <label class="sr-only" ng-model="newcontact.name" for="form-first-name">First name</label>
                                         <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-last-name">Last name</label>
+                                        <label class="sr-only" ng-model="newcontact.email" for="form-last-name">Last name</label>
                                         <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-email">Phone #</label>
-                                        <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+                                        <label class="sr-only" ng-model="newcontact.phone" for="form-email">Phone #</label>
+                                        <input type="text" name="form-phone" placeholder="Phone..." class="form-phone form-control" id="form-phone">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" for="form-email">Email</label>
+                                        <label class="sr-only" ng-model="newcontact.email" for="form-email">Email</label>
                                         <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
+                                        <input type="hidden" ng-model="newcontact.id" />
                                     </div>                                    
-                                    <button type="submit" class="btn">Sign me up!</button>
+                                    <button type="button" class="btn" ng-click="saveContact()">Sign me up!</button>
                                 </form>
                             </div>
                         </div>
@@ -144,7 +145,7 @@
                                                 <td>{{ contact.email }}</td>
                                                 <td>{{ contact.phone }}</td>
                                                 <td>{{ contact.email }}</td>
-                                                <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+                                                <td> <a href="#" ng-click="edit(contact.id)">edit</a> | <a href="#" ng-click="delete(contact.id)">delete</a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -152,8 +153,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
         </div>
 
 
