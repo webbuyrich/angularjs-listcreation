@@ -15,6 +15,8 @@
 		<link rel="stylesheet" href="assets/css/form-elements.css">
         <link rel="stylesheet" href="assets/css/style.css">
 
+    <script src="assets/js/angular.min.js"></script>
+    <script src="assets/js/app.js"></script>
         
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,10 +89,10 @@
         <div class="top-content">
         	
             <div class="inner-bg">
-                <div class="container" ng-app="myApp">
-                    <div class="row" ng-controller="contactController">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-sm-12 form-box">
                             <div class="form-top">
                                 <div class="form-top-left">
                                     <h3>Sign up now</h3>
@@ -100,58 +102,53 @@
                                     <i class="fa fa-pencil"></i>
                                 </div>
                             </div>
-                            <div class="form-bottom">
-                                <form role="form" action="" method="post" class="registration-form">
+                            <div class="form-bottom" ng-app="app" ng-controller="ContactController">
+                                <form role="form" name="myform" action="" method="post" class="registration-form">
                                     <div class="form-group">
-                                        <label class="sr-only" ng-model="newcontact.name" for="form-first-name">First name</label>
-                                        <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
+                                        <label class="sr-only" for="form-first-name">First name</label>
+                                        <input type="text" name="firstname" placeholder="First name..." class="form-first-name form-control" id="form-first-name" ng-model="newcontact.firstname">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" ng-model="newcontact.email" for="form-last-name">Last name</label>
-                                        <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
+                                        <label class="sr-only" for="form-last-name">Last name</label>
+                                        <input type="text" name="firstname" placeholder="Last name..." class="form-first-name form-control" id="form-first-name" ng-model="newcontact.lastname">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" ng-model="newcontact.phone" for="form-email">Phone #</label>
-                                        <input type="text" name="form-phone" placeholder="Phone..." class="form-phone form-control" id="form-phone">
+                                        <label class="sr-only" for="form-phone">Phone</label>
+                                        <input type="text" name="firstname" placeholder="Phone..." class="form-first-name form-control" id="form-first-name" ng-model="newcontact.phone">
                                     </div>
                                     <div class="form-group">
-                                        <label class="sr-only" ng-model="newcontact.email" for="form-email">Email</label>
-                                        <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-                                        <input type="hidden" ng-model="newcontact.id" />
-                                    </div>                                    
-                                    <button type="button" class="btn" ng-click="saveContact()">Sign me up!</button>
+                                        <label class="sr-only" for="form-email">Email</label>
+                                        <input type="text" name="firstname" placeholder="Email..." class="form-first-name form-control" id="form-first-name" ng-model="newcontact.email">
+                                    </div>
+                                    <input type="hidden" ng-model="newcontact.id" />
+                                    <button type="submit" class="btn" ng-click="saveContact()" ng-disabled="myform.$invalid">Sign me up!</button>
                                 </form>
+                                <div class="spacer20"></div>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="contact in contacts">
+                                            <td>{{ contact.firstname }}</td>
+                                            <td>{{ contact.lastname }}</td>
+                                            <td>{{ contact.phone }}</td>
+                                            <td>{{ contact.email }}</td>
+                                            <td> <a href="javascript:void(0)" ng-click="edit(contact.id)">edit</a> | <a href="javascript:void(0)" ng-click="delete(contact.id)">delete</a>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                           
-                        <div class="col-sm-3">
-                        	
-                        </div>
-                        <div class="col-sm-12 spacer20"></div>
-                        <div class="col-sm-12">
-                                <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr style="background: #fff;">
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat="contact in contacts">
-                                                <td>{{ contact.name }}</td>
-                                                <td>{{ contact.email }}</td>
-                                                <td>{{ contact.phone }}</td>
-                                                <td>{{ contact.email }}</td>
-                                                <td> <a href="#" ng-click="edit(contact.id)">edit</a> | <a href="#" ng-click="delete(contact.id)">delete</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                </table>
-                        </div>
-                    </div>
+                    </div>                                                           
                 </div>
             </div>            
         </div>
@@ -165,8 +162,7 @@
         <script src="assets/js/scripts.js"></script>
 
         <!-- Custom Scripts -->
-        <script src="assets/js/angular.min.js"></script>
-        <script src="assets/js/app.js"></script>
+       
         
         <!--[if lt IE 10]>
             <script src="assets/js/placeholder.js"></script>
